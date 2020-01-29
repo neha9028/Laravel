@@ -30,7 +30,7 @@
 										<input id="name" name="category" type="text" placeholder="category name" class="form-control" required>
 									</div>
 								</div>
-							
+								<input type="hidden" name="cat_id" value="{{$cat_id}}">
 								
 								<!-- Form actions -->
 								<div class="form-group">

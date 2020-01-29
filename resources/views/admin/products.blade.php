@@ -34,6 +34,17 @@
 										 </select>
 									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-md-2 control-label" for="name">Sub Category</label>
+									<div class="col-md-10">
+										<select class="form-control" id="sel1" name="sub_category" required>
+											<option value="">Select Category</option>
+											 @for ($i = 0; $i < count($sub_cat); $i++)
+												<option value="{{$sub_cat[$i]['id']}}">{{$sub_cat[$i]['name']}}</option>
+										   	 @endfor
+										 </select>
+									</div>
+								</div>
 								<!-- Name input-->
 								<div class="form-group">
 									<label class="col-md-2 control-label" for="name">Product Name</label>

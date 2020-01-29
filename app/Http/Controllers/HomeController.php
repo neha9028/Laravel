@@ -8,6 +8,7 @@ use App\Product;
 use App\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
@@ -41,7 +42,7 @@ class HomeController extends Controller
     public function open_widgets()
     {
         // return view('admin.widgets');
-        $cat =  Category::all();
+        $cat =  Category::where('category_id',0)->get();
         return view('admin.categoryList')->with('catgs', $cat);
     }
     public function category_form()
@@ -62,8 +63,9 @@ class HomeController extends Controller
     }
     public function products_form()
     {
-        $cat = Category::all();
-        return view('admin.products')->with('catgs', $cat);
+        $cat = Category::where('category_id',0)->get();
+        $sub_cat = Category::where('category_id','<>',0)->get();
+        return view('admin.products')->with('catgs', $cat)->with('sub_cat', $sub_cat);
     }
 
     public function save_product(Request $request){
@@ -80,6 +82,7 @@ class HomeController extends Controller
         $splitstr =  explode('/',$main_image_path);
         $pro = new Product; 
         $pro->category_id = $request->input('cat_name');
+        $pro->subcategory_id = $request->input('sub_category');
         $pro->name = $request->input('product');
         $pro->description = $request->input('description');
         $pro->size = $request->input('size');
@@ -111,8 +114,13 @@ class HomeController extends Controller
 
 
     public function product_list()
-    {
-        $products = Product::where('product_id',0)->get();
+    {   
+        $products =  DB::table('products')
+                    ->join('category', 'category.id', '=', 'products.category_id')
+                    ->select('products.*', 'category.name As category')
+                    ->where('product_id',0)
+                    ->get();
+        // dd($products);
         return view('admin.productList')->with('products', $products);
     }
 
@@ -151,6 +159,7 @@ class HomeController extends Controller
         $pro->category_id = $products['category_id'];
         $pro->highlights = $products['highlights'];
         $pro->warranty = $products['warranty'];
+        $pro->subcategory_id = $products['subcategory_id'];
         $pro->other_images = $image_json;
         $pro->save();
         Session::flash('message', 'Variant saved Successfully!!!'); 
@@ -164,7 +173,14 @@ class HomeController extends Controller
     }
     public function save_subcategory(Request $request)
     {
-        dd($request->input());
+        // dd($request->input());
+        $dycrypt_id = Crypt::decrypt($request->input('cat_id'));
+        $cat = new Category; 
+        $cat->name = $request->input('category');
+        $cat->category_id = $dycrypt_id;
+        $cat->save();
+        Session::flash('message', 'Sub Category saved Successfully!!!'); 
+        return redirect('/widgets-dash');
     }
     
 }

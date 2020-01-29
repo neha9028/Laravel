@@ -18,6 +18,8 @@
 				 <table class="table table-striped">
 				    <thead>
 				      <tr>
+				      	<th>#</th>
+				      	<th>Category</th>
 				        <th>Name</th>
 				        <th>Image</th>
 				        <th>Price</th>
@@ -26,19 +28,22 @@
 				      </tr>
 				    </thead>
 				    <tbody>
-				    	@foreach ($products as $pro)
+
+				    	@for ($i = 0; $i < count($products); $i++)
 					      <tr>
-					        <td>{{$pro['name']}}</td>
-					        <td><img src="{{ asset('storage/'.$pro['main_image']) }}" style="width: 150px; height: 150px;"></td>
-					        <td>{{$pro['price']}}</td>
-					        <td>{{$pro['quantity']}}</td>
-					        <?php
+					      	<td>{{$i+1}}</td>
+					      	<td>{{$products[$i]->category}}</td>
+					      	<td>{{$products[$i]->name}}</td>
+					      	<td><img src="{{ asset('storage/'.$products[$i]->main_image) }}" style="width: 150px; height: 150px;"></td>
+					      	<td>{{$products[$i]->price}}</td>
+					      	<td>{{$products[$i]->quantity}}</td>
+					      	<?php
 	      
-							    $parameter= Crypt::encrypt($pro['id']);
+							    $parameter= Crypt::encrypt($products[$i]->id);
 							?>
 					        <td><a class="btn btn-primary" href="{{url('variants-form/'.$parameter)}}" role="button">Add Variant <i class="fa fa-plus"></i></a></td>
 					      </tr>
-				      @endforeach
+				      @endfor
 				    
 				    </tbody>
 				  </table>
