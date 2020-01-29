@@ -195,5 +195,12 @@ class HomeController extends Controller
         $variants = Product::where('product_id',$dycrypt_id)->get();
         return view('admin.variantList')->with('variants', $variants);
     }
+    public function subcategory_list($cat_id)
+    {
+       $dycrypt_id = Crypt::decrypt($cat_id);
+       $sub_category = Category::where('category_id',$dycrypt_id)->get();
+       return view('admin.subcategoryList')->with('sub_category', $sub_category);
+       // dd($sub_category);
+    }
     
 }
