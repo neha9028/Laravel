@@ -13,9 +13,9 @@
 	
 	<ul class="nav menu">
 		<li><a href="{{ url('/home') }}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-		<li><a href="{{ url('/widgets-dash') }}"><em class="fa fa-calendar">&nbsp;</em> Category</a></li>
-		<li><a href="{{ route('product_list') }}"><em class="fa fa-bar-chart">&nbsp;</em> Products</a></li>
-		<li><a href="{{ route('offers') }}"><em class="fa fa-bar-chart">&nbsp;</em> offers</a></li>
+		<li><a href="{{ url('/widgets-dash') }}"><em class="fa fa-cubes">&nbsp;</em> Category</a></li>
+		<li><a href="{{ route('product_list') }}"><em class="fa fa-briefcase">&nbsp;</em> Products</a></li>
+		<li><a href="{{ route('offers') }}"><em class="fa fa-bullhorn">&nbsp;</em> offers</a></li>
 	</ul>
 </div><!--/.sidebar-->
 

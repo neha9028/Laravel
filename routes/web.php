@@ -30,6 +30,7 @@ Route::get('/products-form', 'HomeController@products_form')->name('products');
 Route::get('/variants-form/{id}', 'HomeController@variants_form')->name('variant');
 Route::get('/subcat-form/{id}', 'HomeController@subcat_form');
 Route::get('/products', 'HomeController@product_list')->name('product_list');
+Route::get('/variants/{id}', 'HomeController@variant_list')->name('variant_list');
 Route::post('/create-category', 'HomeController@save_category')->name('create_category');
 Route::post('/create-product', 'HomeController@save_product')->name('create_product');
 Route::post('/create-variant', 'HomeController@save_variant')->name('create_variant');

@@ -87,6 +87,7 @@ class HomeController extends Controller
         $pro->description = $request->input('description');
         $pro->size = $request->input('size');
         $pro->price = $request->input('price');
+        $pro->color = $request->input('color');
         $pro->compare_price = $request->input('comp_price');
         $pro->quantity = $request->input('quantity');
         $pro->main_image = $splitstr[1];
@@ -152,6 +153,7 @@ class HomeController extends Controller
         $pro->name = $request->input('variant_name');
         $pro->price = $request->input('price');
         $pro->size = $request->input('size');
+        $pro->color = $request->input('color');
         $pro->compare_price = $request->input('comp_price');
         $pro->quantity = $request->input('quantity');
         $pro->main_image = $splitstr[1];
@@ -181,6 +183,13 @@ class HomeController extends Controller
         $cat->save();
         Session::flash('message', 'Sub Category saved Successfully!!!'); 
         return redirect('/widgets-dash');
+    }
+
+    public function variant_list($pro_id)
+    {
+        $dycrypt_id = Crypt::decrypt($pro_id);
+        $variants = Product::where('product_id',$dycrypt_id)->get();
+        return view('admin.variantList')->with('variants', $variants);
     }
     
 }

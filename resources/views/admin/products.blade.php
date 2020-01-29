@@ -83,6 +83,12 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="col-md-2 control-label" for="name">Color</label>
+									<div class="col-md-10">
+										<input id="color" name="color" type="text" placeholder="color" class="form-control" required>
+									</div>
+								</div>
+								<div class="form-group">
 									<label class="col-md-2 control-label" for="name">Compare Price</label>
 									<div class="col-md-10">
 										<input id="comp_price" name="comp_price" type="number" placeholder="compare price" class="form-control" required>

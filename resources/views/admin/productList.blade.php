@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('content')	
-	
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<div class="col-lg-12">
@@ -15,7 +14,7 @@
 				<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
 			@endif
 			<div class="col-md-10 col-md-offset-1">
-				 <table class="table table-striped">
+				 <table class="table table-striped" id="pro-table">
 				    <thead>
 				      <tr>
 				      	<th>#</th>
@@ -41,7 +40,10 @@
 	      
 							    $parameter= Crypt::encrypt($products[$i]->id);
 							?>
-					        <td><a class="btn btn-primary" href="{{url('variants-form/'.$parameter)}}" role="button">Add Variant <i class="fa fa-plus"></i></a></td>
+					        <td>
+					        	<a class="btn btn-primary" href="{{url('variants-form/'.$parameter)}}" role="button" style="margin-bottom: 6px">Add Variant <i class="fa fa-plus"></i></a> 
+					        	<a class="btn btn-primary" href="{{url('variants/'.$parameter)}}" role="button" >See Variants <i class="fa fa-eye"></i></a>
+					        </td>
 					      </tr>
 				      @endfor
 				    
@@ -50,5 +52,6 @@
 			</div>
 		</div><!--/.row-->
 	</div>	<!--/.main-->
+	
 @endsection
 

@@ -9,6 +9,7 @@
     <link href="{{ asset('css/datepicker3.css')}}" rel="stylesheet">
     <link href="{{ asset('css/styles.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 </head>
     <body>
@@ -60,6 +61,7 @@
     <script src="{{ asset('js/easypiechart-data.js')}}"></script>
     <script src="{{ asset('js/bootstrap-datepicker.js')}}"></script>
     <script src="{{ asset('js/custom.js')}}"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <script type="text/javascript">
         var highlight_menu = function(path) {
             /* Highlight current link */  
@@ -69,6 +71,9 @@
         $( document ).ready(function() {
             highlight_menu(window.location.href);
         });
+            $(document).ready( function () {
+            $('#pro-table').DataTable();
+        } );
     </script>
 
 </html>
