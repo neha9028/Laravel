@@ -20,17 +20,20 @@
 				      <tr>
 				      	<th>#</th>
 				        <th>Name</th>
+				        <th>Offers</th>
+				        <th>Action</th>
 				      </tr>
 				    </thead>
 				    <tbody>
 				    	@for ($i = 0; $i < count($catgs); $i++)
 					      <tr>
 					      	<td>{{$i + 1}}</td>
-					        <td>{{$catgs[$i]['name']}}</td>
+					        <td>{{$catgs[$i]->name}}</td>
+					        <td>{!! $catgs[$i]->available_offers !!}</td>
 					       
 					        <?php
 	      
-							    $parameter= Crypt::encrypt($catgs[$i]['id']);
+							    $parameter= Crypt::encrypt($catgs[$i]->id);
 							?>
 					        <td><a class="btn btn-primary" href="{{url('subcat-form/'.$parameter)}}" role="button">Add Subcategory <i class="fa fa-plus"></i></a></td>
 					      </tr>

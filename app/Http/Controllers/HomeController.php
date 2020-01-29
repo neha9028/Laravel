@@ -41,8 +41,12 @@ class HomeController extends Controller
 
     public function open_widgets()
     {
-        // return view('admin.widgets');
-        $cat =  Category::where('category_id',0)->get();
+        $cat =  DB::table('category')
+                    ->leftjoin('offers', 'category.id', '=', 'offers.category_id')
+                    ->select('category.*', 'offers.available_offers')
+                    ->where('category.category_id',0)
+                    ->get();
+
         return view('admin.categoryList')->with('catgs', $cat);
     }
     public function category_form()
