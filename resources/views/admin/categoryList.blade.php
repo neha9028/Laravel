@@ -36,8 +36,9 @@
 							    $parameter= Crypt::encrypt($catgs[$i]->id);
 							?>
 					        <td>
-					        	<a class="btn btn-primary" href="{{url('subcat-form/'.$parameter)}}" role="button">Add Subcategory <i class="fa fa-plus"></i></a>
 					        	<a class="btn btn-primary" href="{{url('subcategory/'.$parameter)}}" role="button">View Subcategory <i class="fa fa-eye"></i></a>
+					        	<a class="btn btn-primary" href="{{url('subcat-form/'.$parameter)}}" role="button">Add Subcategory <i class="fa fa-plus"></i></a>
+
 					        </td>
 					      </tr>
 				       @endfor
